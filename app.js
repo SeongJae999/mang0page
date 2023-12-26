@@ -1,14 +1,16 @@
+"use strict";
+
+// module
 const express = require("express");
 const app = express()
 
-app.get("/", (req, res) => {
-    res.send("여기는 루트입니다.");
-});
+// routing
+const home = require("./routes/home");
 
-app.get("/login", (req, res) => {
-    res.send("여기는 로그인 화면입니다.");
-});
+// application setting
+app.set("views", "./views");
+app.set("view engine", "ejs");
 
-app.listen(3000, () => {
-    console.log("서버 가동");
-});
+app.use("/", home); // use : midlleware를 등록해주는 메서드
+
+module.exports = app;
